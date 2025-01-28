@@ -4,7 +4,7 @@
   Cell: Has a state , active , play() function that changes the state of the cell, when clicked.
        If state = 0 : Unoccupied 
           state = 1 : Occupied by x
-          state = 2 : Occupied by o
+          state = -1 : Occupied by o
        If active = true - Can be played
           active = false - Cannot be played
   Similarly for each board there is a state and active
@@ -136,10 +136,30 @@ class Board {
       ) {
         console.log("wincondition for board reached");
         this.state = val;
+        this.active = false;
         return true;
       }
     }
+    let draw_ = this.checkdrawb() ;
+    if(draw_){
+      return true ;
+    }
     return false;
+  }
+
+  checkdrawb(){
+    if(this.state != 0){
+      return false ;
+    }
+    for(let i = 0 ; i < 3 ; ++i){
+      for(let j = 0 ; j < 3 ; ++j){
+        if(this.cells[i][j].state == 0){
+          return false ;
+        }
+      }
+    }
+    this.state = 2 ;
+    return true ;
   }
 
   activate(bool) {
@@ -218,12 +238,20 @@ class UltraBoard {
         this.boards[mod3][quo3].state == val 
       ) {
         this.state = val;
-        return;
+        return true ;
       }
     }
+    let draw__ = this.checkdraw() ;
+    if(draw__){
+      return true ;
+    }
+    return false;
   }
   
   checkdraw(){
+    if(this.state != 0){
+      return false ;
+    }
     for(let i = 0 ; i < 3 ; ++i){
         for(let j = 0 ; j < 3 ; ++j){
             if(this.boards[i][j].state == 0){
