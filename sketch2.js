@@ -221,7 +221,7 @@ function drawboard(Ultraboard){
 
         stroke(0 , 0 , 255) ;
         fill(0 , 0 , 255 );
-        text('x' , 500 + 300 , 80 + 400);
+        text('o' , 500 + 300 , 80 + 400);
 
         textSize(100) ;
         textAlign(CENTER);
